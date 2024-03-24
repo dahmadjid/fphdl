@@ -27,11 +27,11 @@
 
 
 use std.textio.all;
-library ieee, ieee_proposed;
+library ieee, work;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee_proposed.fixed_float_types.all;
-use ieee_proposed.fixed_pkg.all;
+use work.fixed_float_types.all;
+use work.fixed_pkg.all;
 
 package fixed_noresize is
 

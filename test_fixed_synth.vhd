@@ -11,10 +11,10 @@ entity test_fixed_synth is
     quiet : boolean := false);  -- make the simulation quiet
 end entity test_fixed_synth;
 
-library ieee, ieee_proposed;
+library ieee, work;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee_proposed.fixed_pkg.all;
+use work.fixed_pkg.all;
 architecture testbench of test_fixed_synth is
 
   procedure report_error (

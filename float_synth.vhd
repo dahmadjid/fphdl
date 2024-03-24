@@ -6,12 +6,12 @@
 --   modification history : Last Modified $Date: 2006-06-08 10:50:32-04 $
 --   Version $Id: float_synth.vhdl,v 1.1 2006-06-08 10:50:32-04 l435385 Exp $
 -------------------------------------------------------------------------------
-library ieee, ieee_proposed;
+library ieee, work;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee_proposed.fixed_float_types.all;
-use ieee_proposed.fixed_pkg.all;
-use ieee_proposed.float_pkg.all;
+use work.fixed_float_types.all;
+use work.fixed_pkg.all;
+use work.float_pkg.all;
 use ieee.math_real.all;
 entity float_synth is
   

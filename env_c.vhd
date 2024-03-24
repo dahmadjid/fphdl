@@ -6,8 +6,8 @@ package ENV is
   function RESOLUTION_LIMIT return DELAY_LENGTH;
 
 end package ENV;
-library ieee_proposed;
-use ieee_proposed.standard_additions.all;
+library work;
+use work.standard_additions.all;
 package body ENV is
 
   procedure STOP (STATUS   : INTEGER) is

@@ -8,13 +8,13 @@ entity test_float_synth is
 end entity test_float_synth;
 
 use std.textio.all;
-library ieee, ieee_proposed;
+library ieee, work;
 use ieee.math_real.all;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee_proposed.fixed_float_types.all;
-use ieee_proposed.fixed_pkg.all;
-use ieee_proposed.float_pkg.all;
+use work.fixed_float_types.all;
+use work.fixed_pkg.all;
+use work.float_pkg.all;
 
 --library modelsim_lib;
 --use modelsim_lib.util.all;

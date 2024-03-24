@@ -1,8 +1,9 @@
+# This is a fork from FPHDL/fphdl. Thanks David W. Bishop
+
+modified to be used together with the work directory (no need to do library ieee_proposed).
+this is to make it work with simulators like ghdl with no pain.
+
 # VHDL-2008 Support Library
-
-
-
-
 
 --------
 

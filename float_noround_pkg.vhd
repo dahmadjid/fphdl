@@ -19,12 +19,12 @@
 -- that have 18 bit built in ALU blocks it will save a great deal of area.
 --
 -- Please see the documentation for the floating point package.
--- This package should be compiled into "ieee_proposed" and used as follows:
+-- This package should be compiled into "work" and used as follows:
 -- use ieee.std_logic_1164.all;
 -- use ieee.numeric_std.all;
--- use ieee_proposed.fixed_float_types.all;
--- use ieee_proposed.fixed_pkg.all;
--- use ieee_proposed.float_noround_pkg.all;
+-- use work.fixed_float_types.all;
+-- use work.fixed_pkg.all;
+-- use work.float_noround_pkg.all;
 --
 --  This verison is designed to work with the VHDL-93 compilers.  Please
 --  note the "%%%" comments.  These are where we diverge from the
@@ -39,9 +39,9 @@ use STD.TEXTIO.all;
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
-library ieee_proposed;
-use ieee_proposed.fixed_float_types.all;
-use ieee_proposed.fixed_pkg.all;
+library work;
+use work.fixed_float_types.all;
+use work.fixed_pkg.all;
 
 package float_noround_pkg is
 -- generic (

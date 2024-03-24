@@ -1,8 +1,8 @@
 ------------------------------------------------------------------------------
 -- "standard_textio_additions" package contains the additions to the built in
 -- "standard.textio" package.
--- This package should be compiled into "ieee_proposed" and used as follows:
--- use ieee_proposed.standard_textio_additions.all;
+-- This package should be compiled into "work" and used as follows:
+-- use work.standard_textio_additions.all;
 -- Last Modified: $Date: 2007-03-13 14:25:58-04 $
 -- RCS ID: $Id: standard_textio_additions_c.vhdl,v 1.5 2007-03-13 14:25:58-04 l435385 Exp $
 --
@@ -52,8 +52,8 @@ package standard_textio_additions is
 
 end package standard_textio_additions;
 
-library ieee_proposed;
-use ieee_proposed.standard_additions.all;
+library work;
+use work.standard_additions.all;
 
 package body standard_textio_additions is
 -- pragma synthesis_off
