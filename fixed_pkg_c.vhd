@@ -2050,9 +2050,9 @@ package body fixed_pkg is
     return INTEGER is
   begin  -- function mine
     if (L = INTEGER'low or R = INTEGER'low) then
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
         & " Unbounded number passed, was a literal used?"
-        severity error;
+        severity warning;
       return 0;
     end if;
     return minimum (L, R);
@@ -2069,7 +2069,7 @@ package body fixed_pkg is
     variable result      : UNRESOLVED_sfixed (arg'range);
   begin  -- function cleanvec
     assert not (arg'ascending and (arg'low /= INTEGER'low))
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
       & " Vector passed using a ""to"" range, expected is ""downto"""
       severity error;
     return arg;
@@ -2084,7 +2084,7 @@ package body fixed_pkg is
     variable result      : UNRESOLVED_ufixed (arg'range);
   begin  -- function cleanvec
     assert not (arg'ascending and (arg'low /= INTEGER'low))
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
       & " Vector passed using a ""to"" range, expected is ""downto"""
       severity error;
     return arg;
@@ -2312,7 +2312,7 @@ package body fixed_pkg is
       return NAUF;
     end if;
     if (arg'length /= result'length) then
-      report fixed_pkg'instance_name & "TO_UFIXED(SLV) "
+      report "fixed_pkg" & "TO_UFIXED(SLV) "
         & "Vector lengths do not match.  Input length is "
         & INTEGER'image(arg'length) & " and output will be "
         & INTEGER'image(result'length) & " wide."
@@ -2337,7 +2337,7 @@ package body fixed_pkg is
       return NASF;
     end if;
     if (arg'length /= result'length) then
-      report fixed_pkg'instance_name & "TO_SFIXED(SLV) "
+      report "fixed_pkg" & "TO_SFIXED(SLV) "
         & "Vector lengths do not match.  Input length is "
         & INTEGER'image(arg'length) & " and output will be "
         & INTEGER'image(result'length) & " wide."
@@ -2563,7 +2563,7 @@ package body fixed_pkg is
     lslv := to_uns (cleanvec (lresize));
     rslv := to_uns (cleanvec (r));
     if (rslv = 0) then
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
         & "DIVIDE(ufixed) Division by zero" severity error;
       result := saturate (result'high, result'low);    -- saturate
     else
@@ -2604,7 +2604,7 @@ package body fixed_pkg is
     lslv := to_s (cleanvec (lresize));
     rslv := to_s (cleanvec (r));
     if (rslv = 0) then
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
         & "DIVIDE(sfixed) Division by zero" severity error;
       result := saturate (result'high, result'low);
     else
@@ -2706,7 +2706,7 @@ package body fixed_pkg is
                        round_style    => fixed_truncate);
     rslv := to_uns (rresize);
     if (rslv = 0) then
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
         & "remainder(ufixed) Division by zero" severity error;
       result := saturate (result'high, result'low);      -- saturate
     else
@@ -3206,7 +3206,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) and to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """and"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3221,7 +3221,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) or to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """or"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3236,7 +3236,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) nand to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """nand"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3251,7 +3251,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) nor to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """nor"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3266,7 +3266,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) xor to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """xor"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3281,7 +3281,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) xnor to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """xnor"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3303,7 +3303,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) and to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """and"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3318,7 +3318,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) or to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """or"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3333,7 +3333,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) nand to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """nand"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3348,7 +3348,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) nor to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """nor"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3363,7 +3363,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) xor to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """xor"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3378,7 +3378,7 @@ package body fixed_pkg is
       RESULT := to_sulv(L) xnor to_sulv(R);
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """xnor"": Range error L'RANGE /= R'RANGE"
         severity warning;
       RESULT := (others => 'X');
@@ -3697,7 +3697,7 @@ package body fixed_pkg is
   begin  -- ?=
     if ((L'length < 1) or (R'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?="": null detected, returning X"
         severity warning;
       return 'X';
@@ -3718,7 +3718,7 @@ package body fixed_pkg is
   begin  -- ?/=
     if ((L'length < 1) or (R'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?/="": null detected, returning X"
         severity warning;
       return 'X';
@@ -3739,7 +3739,7 @@ package body fixed_pkg is
   begin  -- ?>
     if ((l'length < 1) or (r'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?>"": null detected, returning X"
         severity warning;
       return 'X';
@@ -3760,7 +3760,7 @@ package body fixed_pkg is
   begin  -- ?>=
     if ((l'length < 1) or (r'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?>="": null detected, returning X"
         severity warning;
       return 'X';
@@ -3781,7 +3781,7 @@ package body fixed_pkg is
   begin  -- ?<
     if ((l'length < 1) or (r'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?<"": null detected, returning X"
         severity warning;
       return 'X';
@@ -3802,7 +3802,7 @@ package body fixed_pkg is
   begin  -- ?<=
     if ((l'length < 1) or (r'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?<="": null detected, returning X"
         severity warning;
       return 'X';
@@ -3823,7 +3823,7 @@ package body fixed_pkg is
   begin  -- ?=
     if ((L'length < 1) or (R'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?="": null detected, returning X"
         severity warning;
       return 'X';
@@ -3844,7 +3844,7 @@ package body fixed_pkg is
   begin  -- ?/=
     if ((L'length < 1) or (R'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?/="": null detected, returning X"
         severity warning;
       return 'X';
@@ -3865,7 +3865,7 @@ package body fixed_pkg is
   begin  -- ?>
     if ((l'length < 1) or (r'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?>"": null detected, returning X"
         severity warning;
       return 'X';
@@ -3886,7 +3886,7 @@ package body fixed_pkg is
   begin  -- ?>=
     if ((l'length < 1) or (r'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?>="": null detected, returning X"
         severity warning;
       return 'X';
@@ -3907,7 +3907,7 @@ package body fixed_pkg is
   begin  -- ?<
     if ((l'length < 1) or (r'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?<"": null detected, returning X"
         severity warning;
       return 'X';
@@ -3928,7 +3928,7 @@ package body fixed_pkg is
   begin  -- ?<=
     if ((l'length < 1) or (r'length < 1)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """?<="": null detected, returning X"
         severity warning;
       return 'X';
@@ -3948,7 +3948,7 @@ package body fixed_pkg is
       return std_match(to_sulv(L), to_sulv(R));
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & "STD_MATCH: L'RANGE /= R'RANGE, returning FALSE"
         severity warning;
       return false;
@@ -3961,7 +3961,7 @@ package body fixed_pkg is
       return std_match(to_sulv(L), to_sulv(R));
     else
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & "STD_MATCH: L'RANGE /= R'RANGE, returning FALSE"
         severity warning;
       return false;
@@ -3979,13 +3979,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """="": null argument detected, returning FALSE"
         severity warning;
       return false;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """="": metavalue detected, returning FALSE"
         severity warning;
       return false;
@@ -4007,13 +4007,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """="": null argument detected, returning FALSE"
         severity warning;
       return false;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """="": metavalue detected, returning FALSE"
         severity warning;
       return false;
@@ -4035,13 +4035,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """/="": null argument detected, returning TRUE"
         severity warning;
       return true;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """/="": metavalue detected, returning TRUE"
         severity warning;
       return true;
@@ -4063,13 +4063,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """/="": null argument detected, returning TRUE"
         severity warning;
       return true;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """/="": metavalue detected, returning TRUE"
         severity warning;
       return true;
@@ -4091,13 +4091,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """>"": null argument detected, returning FALSE"
         severity warning;
       return false;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """>"": metavalue detected, returning FALSE"
         severity warning;
       return false;
@@ -4119,13 +4119,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """>"": null argument detected, returning FALSE"
         severity warning;
       return false;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """>"": metavalue detected, returning FALSE"
         severity warning;
       return false;
@@ -4147,13 +4147,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """<"": null argument detected, returning FALSE"
         severity warning;
       return false;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """<"": metavalue detected, returning FALSE"
         severity warning;
       return false;
@@ -4175,13 +4175,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """<"": null argument detected, returning FALSE"
         severity warning;
       return false;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """<"": metavalue detected, returning FALSE"
         severity warning;
       return false;
@@ -4203,13 +4203,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """>="": null argument detected, returning FALSE"
         severity warning;
       return false;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """>="": metavalue detected, returning FALSE"
         severity warning;
       return false;
@@ -4231,13 +4231,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """>="": null argument detected, returning FALSE"
         severity warning;
       return false;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """>="": metavalue detected, returning FALSE"
         severity warning;
       return false;
@@ -4259,13 +4259,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """<="": null argument detected, returning FALSE"
         severity warning;
       return false;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """<="": metavalue detected, returning FALSE"
         severity warning;
       return false;
@@ -4287,13 +4287,13 @@ package body fixed_pkg is
   begin
     if (l'length < 1 or r'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """<="": null argument detected, returning FALSE"
         severity warning;
       return false;
     elsif (Is_X(l) or Is_X(r)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & """<="": metavalue detected, returning FALSE"
         severity warning;
       return false;
@@ -4394,7 +4394,7 @@ package body fixed_pkg is
       end loop;
       if argx /= 0 then
         assert NO_WARNING
-          report fixed_pkg'instance_name
+          report "fixed_pkg"
           & "TO_UFIXED(NATURAL): vector truncated"
           severity warning;
         if overflow_style = fixed_saturate then
@@ -4447,7 +4447,7 @@ package body fixed_pkg is
       end loop;
       if argx /= 0 or left_index < 0 or sign /= sresult(sresult'left) then
         assert NO_WARNING
-          report fixed_pkg'instance_name
+          report "fixed_pkg"
           & "TO_SFIXED(INTEGER): vector truncated"
           severity warning;
         if overflow_style = fixed_saturate then                -- saturate
@@ -4492,14 +4492,14 @@ package body fixed_pkg is
       return NAUF;
     end if;
     if (arg < 0.0) then
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
         & "TO_UFIXED: Negative argument passed "
         & REAL'image(arg) severity error;
       return result;
     end if;
     presult := arg;
     if presult >= (2.0**(left_index+1)) then
-      assert NO_WARNING report fixed_pkg'instance_name
+      assert NO_WARNING report "fixed_pkg"
         & "TO_UFIXED(REAL): vector truncated"
         severity warning;
       if overflow_style = fixed_wrap then
@@ -4547,7 +4547,7 @@ package body fixed_pkg is
       return NASF;
     end if;
     if (arg >= (2.0**left_index) or arg < -(2.0**left_index)) then
-      assert NO_WARNING report fixed_pkg'instance_name
+      assert NO_WARNING report "fixed_pkg"
         & "TO_SFIXED(REAL): vector truncated"
         severity warning;
       if overflow_style = fixed_saturate then
@@ -4848,7 +4848,7 @@ package body fixed_pkg is
     variable result : UNRESOLVED_ufixed (width-fraction-1 downto -fraction);
   begin
     if (arg'length /= result'length) then
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
         & "TO_UFIX (STD_ULOGIC_VECTOR) "
         & "Vector lengths do not match.  Input length is "
         & INTEGER'image(arg'length) & " and output will be "
@@ -4870,7 +4870,7 @@ package body fixed_pkg is
     variable result : UNRESOLVED_sfixed (width-fraction-1 downto -fraction);
   begin
     if (arg'length /= result'length) then
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
         & "TO_SFIX (STD_ULOGIC_VECTOR) "
         & "Vector lengths do not match.  Input length is "
         & INTEGER'image(arg'length) & " and output will be "
@@ -5011,7 +5011,7 @@ package body fixed_pkg is
     arg_int := to_x01(cleanvec(arg));
     if (Is_X(arg_int)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & "TO_REAL (ufixed): metavalue detected, returning 0.0"
         severity warning;
       return 0.0;
@@ -5042,7 +5042,7 @@ package body fixed_pkg is
     arg_int := to_x01(cleanvec(arg));
     if (Is_X(arg_int)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & "TO_REAL (sfixed): metavalue detected, returning 0.0"
         severity warning;
       return 0.0;
@@ -5069,7 +5069,7 @@ package body fixed_pkg is
     end if;
     if (Is_X (arg)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & "TO_INTEGER (ufixed): metavalue detected, returning 0"
         severity warning;
       return 0;
@@ -5099,7 +5099,7 @@ package body fixed_pkg is
     end if;
     if (Is_X (arg)) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & "TO_INTEGER (sfixed): metavalue detected, returning 0"
         severity warning;
       return 0;
@@ -5123,7 +5123,7 @@ package body fixed_pkg is
   begin
     if (s'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & "TO_01(ufixed): null detected, returning NULL"
         severity warning;
       return NAUF;
@@ -5139,7 +5139,7 @@ package body fixed_pkg is
   begin
     if (s'length < 1) then
       assert NO_WARNING
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
         & "TO_01(sfixed): null detected, returning NULL"
         severity warning;
       return NASF;
@@ -6906,7 +6906,7 @@ package body fixed_pkg is
       when 'X' => result := "XXX"; good := true;
       when others =>
         assert not ISSUE_ERROR
-          report fixed_pkg'instance_name
+          report "fixed_pkg"
           & "OREAD Error: Read a '" & c &
           "', expected an Octal character (0-7)."
           severity error;
@@ -6943,7 +6943,7 @@ package body fixed_pkg is
       when 'X'       => result := "XXXX"; good := true;
       when others =>
         assert not ISSUE_ERROR
-          report fixed_pkg'instance_name
+          report "fixed_pkg"
           & "HREAD Error: Read a '" & c &
           "', expected a Hex character (0-F)."
           severity error;
@@ -7108,17 +7108,17 @@ package body fixed_pkg is
       i := value'high;
       while i >= VALUE'low loop
         if readOk = false then              -- Bail out if there was a bad read
-          report fixed_pkg'instance_name & "READ(ufixed) "
+          report "fixed_pkg" & "READ(ufixed) "
             & "End of string encountered"
             severity error;
           return;
         elsif c = '_' then
           if i = value'high then
-            report fixed_pkg'instance_name & "READ(ufixed) "
+            report "fixed_pkg" & "READ(ufixed) "
               & "String begins with an ""_""" severity error;
             return;
           elsif lastu then
-            report fixed_pkg'instance_name & "READ(ufixed) "
+            report "fixed_pkg" & "READ(ufixed) "
               & "Two underscores detected in input string ""__"""
               severity error;
             return;
@@ -7127,11 +7127,11 @@ package body fixed_pkg is
           end if;
         elsif c = '.' then                -- binary point
           if founddot then
-            report fixed_pkg'instance_name & "READ(ufixed) "
+            report "fixed_pkg" & "READ(ufixed) "
               & "Two binary points found in input string" severity error;
             return;
           elsif i /= -1 then                 -- Seperator in the wrong spot
-            report fixed_pkg'instance_name & "READ(ufixed) "
+            report "fixed_pkg" & "READ(ufixed) "
               & "Decimal point does not match number format "
               severity error;
             return;
@@ -7139,12 +7139,12 @@ package body fixed_pkg is
           founddot := true;
           lastu := false;
         elsif c = ' ' or c = NBSP or c = HT then  -- reading done.
-          report fixed_pkg'instance_name & "READ(ufixed) "
+          report "fixed_pkg" & "READ(ufixed) "
             & "Short read, Space encounted in input string"
             severity error;
           return;
         elsif char_to_MVL9plus(c) = error then
-          report fixed_pkg'instance_name & "READ(ufixed) "
+          report "fixed_pkg" & "READ(ufixed) "
             & "Character '" &
             c & "' read, expected STD_ULOGIC literal."
             severity error;
@@ -7235,17 +7235,17 @@ package body fixed_pkg is
       i := value'high;
       while i >= VALUE'low loop
         if readOk = false then              -- Bail out if there was a bad read
-          report fixed_pkg'instance_name & "READ(sfixed) "
+          report "fixed_pkg" & "READ(sfixed) "
             & "End of string encountered"
             severity error;
           return;
         elsif c = '_' then
           if i = value'high then
-            report fixed_pkg'instance_name & "READ(sfixed) "
+            report "fixed_pkg" & "READ(sfixed) "
               & "String begins with an ""_""" severity error;
             return;
           elsif lastu then
-            report fixed_pkg'instance_name & "READ(sfixed) "
+            report "fixed_pkg" & "READ(sfixed) "
               & "Two underscores detected in input string ""__"""
               severity error;
             return;
@@ -7254,11 +7254,11 @@ package body fixed_pkg is
           end if;
         elsif c = '.' then                -- binary point
           if founddot then
-            report fixed_pkg'instance_name & "READ(sfixed) "
+            report "fixed_pkg" & "READ(sfixed) "
               & "Two binary points found in input string" severity error;
             return;
           elsif i /= -1 then                 -- Seperator in the wrong spot
-            report fixed_pkg'instance_name & "READ(sfixed) "
+            report "fixed_pkg" & "READ(sfixed) "
               & "Decimal point does not match number format "
               severity error;
             return;
@@ -7266,12 +7266,12 @@ package body fixed_pkg is
           founddot := true;
           lastu := false;
         elsif c = ' ' or c = NBSP or c = HT then  -- reading done.
-          report fixed_pkg'instance_name & "READ(sfixed) "
+          report "fixed_pkg" & "READ(sfixed) "
             & "Short read, Space encounted in input string"
             severity error;
           return;
         elsif char_to_MVL9plus(c) = error then
-          report fixed_pkg'instance_name & "READ(sfixed) "
+          report "fixed_pkg" & "READ(sfixed) "
             & "Character '" &
             c & "' read, expected STD_ULOGIC literal."
             severity error;
@@ -7340,12 +7340,12 @@ package body fixed_pkg is
     begin
       if message then
         if smath then
-          report fixed_pkg'instance_name
+          report "fixed_pkg"
             & "OREAD(sfixed) "
             & mess
             severity error;
         else
-          report fixed_pkg'instance_name
+          report "fixed_pkg"
             & "OREAD(ufixed) "
             & mess
             severity error;
@@ -7439,13 +7439,13 @@ package body fixed_pkg is
     if igood then                       -- We did not get another error
       if not ((i = -1) and               -- We read everything, and high bits 0
               (or_reduce (slv(hbv-lbv downto VALUE'high+1-lbv)) = '0')) then
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
           & "OREAD(ufixed): Vector truncated."
           severity error;
       else
         if (or_reduce (slv(VALUE'low-lbv-1 downto 0)) = '1') then
           assert NO_WARNING
-            report fixed_pkg'instance_name
+            report "fixed_pkg"
             & "OREAD(ufixed): Vector truncated"
             severity warning;
         end if;
@@ -7507,13 +7507,13 @@ package body fixed_pkg is
                 or_reduce (slv(hbv-lbv downto VALUE'high+1-lbv)) = '0') or
                (slv(VALUE'high-lbv) = '1' and
                 and_reduce (slv(hbv-lbv downto VALUE'high+1-lbv)) = '1'))) then
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
           & "OREAD(sfixed): Vector truncated."
           severity error;
       else
         if (or_reduce (slv(VALUE'low-lbv-1 downto 0)) = '1') then
           assert NO_WARNING
-            report fixed_pkg'instance_name
+            report "fixed_pkg"
             & "OREAD(sfixed): Vector truncated"
             severity warning;
         end if;
@@ -7597,12 +7597,12 @@ package body fixed_pkg is
     begin
       if message then
         if smath then
-          report fixed_pkg'instance_name
+          report "fixed_pkg"
             & "HREAD(sfixed) "
             & mess
             severity error;
         else
-          report fixed_pkg'instance_name
+          report "fixed_pkg"
             & "HREAD(ufixed) "
             & mess
             severity error;
@@ -7693,13 +7693,13 @@ package body fixed_pkg is
     if igood then
       if not ((i = -1) and               -- We read everything, and high bits 0
               (or_reduce (slv(hbv-lbv downto VALUE'high+1-lbv)) = '0')) then
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
           & "HREAD(ufixed): Vector truncated."
           severity error;
       else
         if (or_reduce (slv(VALUE'low-lbv-1 downto 0)) = '1') then
           assert NO_WARNING
-            report fixed_pkg'instance_name
+            report "fixed_pkg"
             & "HREAD(ufixed): Vector truncated"
             severity warning;
         end if;
@@ -7761,13 +7761,13 @@ package body fixed_pkg is
                     or_reduce (slv(hbv-lbv downto VALUE'high+1-lbv)) = '0') or
                    (slv(VALUE'high-lbv) = '1' and
                     and_reduce (slv(hbv-lbv downto VALUE'high+1-lbv)) = '1'))) then
-        report fixed_pkg'instance_name
+        report "fixed_pkg"
           & "HREAD(sfixed): Vector truncated."
           severity error;
       else
         if (or_reduce (slv(VALUE'low-lbv-1 downto 0)) = '1') then
           assert NO_WARNING
-            report fixed_pkg'instance_name
+            report "fixed_pkg"
             & "HREAD(sfixed): Vector truncated"
             severity warning;
         end if;
@@ -8046,7 +8046,7 @@ package body fixed_pkg is
     read (L, result, good);
     deallocate (L);
     assert (good)
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
       & "from_string: Bad string "& bstring severity error;
     return result;
   end function from_string;
@@ -8067,7 +8067,7 @@ package body fixed_pkg is
     oread (L, result, good);
     deallocate (L);
     assert (good)
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
       & "from_ostring: Bad string "& ostring severity error;
     return result;
   end function from_ostring;
@@ -8085,7 +8085,7 @@ package body fixed_pkg is
     hread (L, result, good);
     deallocate (L);
     assert (good)
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
       & "from_hstring: Bad string "& hstring severity error;
     return result;
   end function from_hstring;
@@ -8103,7 +8103,7 @@ package body fixed_pkg is
     read (L, result, good);
     deallocate (L);
     assert (good)
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
       & "from_string: Bad string "& bstring severity error;
     return result;
   end function from_string;
@@ -8121,7 +8121,7 @@ package body fixed_pkg is
     oread (L, result, good);
     deallocate (L);
     assert (good)
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
       & "from_ostring: Bad string "& ostring severity error;
     return result;
   end function from_ostring;
@@ -8139,7 +8139,7 @@ package body fixed_pkg is
     hread (L, result, good);
     deallocate (L);
     assert (good)
-      report fixed_pkg'instance_name
+      report "fixed_pkg"
       & "from_hstring: Bad string "& hstring severity error;
     return result;
   end function from_hstring;
@@ -8216,12 +8216,12 @@ package body fixed_pkg is
             r := r + 1;
           end if;
         elsif xarg(i) = ' ' or xarg(i) = NBSP or xarg(i) = HT then
-          report fixed_pkg'instance_name
+          report "fixed_pkg"
             & "Found a space in the input STRING " & xarg
             severity error;
         elsif xarg(i) = '.' then
           if founddot then
-            report fixed_pkg'instance_name
+            report "fixed_pkg"
               & "Found two binary points in input string " & xarg
               severity error;
           else
